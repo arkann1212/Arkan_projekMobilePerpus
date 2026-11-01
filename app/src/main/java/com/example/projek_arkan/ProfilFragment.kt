@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.projek_arkan.databinding.FragmentProfilBinding
+import com.example.projek_arkan.tutorial.TutorialActivity
 
 class ProfilFragment : Fragment() {
     private var _binding: FragmentProfilBinding? = null
@@ -29,6 +30,12 @@ class ProfilFragment : Fragment() {
             // Kembali ke halaman Login
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finish()
+        }
+
+        // Memberikan aksi klik pada tombol tutorial
+        binding.btnLihatTutorial.setOnClickListener {
+            val intent = Intent(requireContext(), TutorialActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -1,14 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:background="@drawable/backgroundutama">
+
+    <!-- 1. Gelombang Header Navy -->
+    <View
+        android:id="@+id/bg_wave"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/bg_header_wave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 2. Judul Halaman -->
     <TextView
+        android:id="@+id/tvJudulKatalog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Katalog Sedang Dibuat"
-        android:textColor="@color/navy"
-        android:textSize="18sp" />
-</LinearLayout>
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/jost_variablefont_wght"
+        android:text="Katalog Buku"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 3. Floating Search Bar -->
+    <EditText
+        android:id="@+id/etSearchKatalog"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/bg_edittext"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawablePadding="12dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/jost_variablefont_wght"
+        android:hint="Cari Judul, Penulis, atau Kategori..."
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/bg_wave"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_wave" />
+
+    <!-- 4. Filter Chip Kategori -->
+    <HorizontalScrollView
+        android:id="@+id/scrollFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="24dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/etSearchKatalog">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupKategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSemua"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Semua" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSains"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sains" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFilsafat"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filsafat" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMatematika"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Matematika" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- 5. Area Daftar Buku dengan ScrollView dan GridLayout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/scrollFilter"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Komponen GridLayout Pertemuan 9 -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:paddingHorizontal="16dp"
+            android:alignmentMode="alignMargins">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/encyclopedia_of_science_cover" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/jost_variablefont_wght"
+                        android:text="Encyclopedia Of Science"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:maxLines="2"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Buku 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/filsafat_sains_cover" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/jost_variablefont_wght"
+                        android:text="Filsafat Sains"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:maxLines="2"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Buku 3 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/book_of_proof_cover" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/jost_variablefont_wght"
+                        android:text="Geografi Indonesia"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:maxLines="2"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Buku 4 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/the_maths_magic_cover" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/jost_variablefont_wght"
+                        android:text="The Maths Book"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:maxLines="2"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

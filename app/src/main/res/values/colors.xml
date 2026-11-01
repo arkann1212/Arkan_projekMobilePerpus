@@ -3,4 +3,8 @@
     <color name="navy">#152848</color>
     <color name="gold">#B08043</color>
     <color name="white">#FFFFFF</color>
+    <color name="tutorial_satu">#64B5F6</color>
+    <color name="tutorial_dua">#AED581</color>
+    <color name="tutorial_tiga">#4DB6AC</color>
+    <color name="dot_selected">#1A243B</color>
 </resources>

@@ -35,6 +35,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+    implementation("com.tbuonomo:dotsindicator:5.1.0")
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
