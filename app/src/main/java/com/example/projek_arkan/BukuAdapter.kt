@@ -28,13 +28,12 @@ class BukuAdapter(context: Context, private val bukuList: List<BukuModel>) :
             tvPenulis.text = it.penulis
         }
 
-        // Perintah agar tombol DETAIL berfungsi memanggil halaman DetailBukuActivity
         btnDetail.setOnClickListener {
             val intent = Intent(context, DetailBukuActivity::class.java)
             context.startActivity(intent)
         }
 
-        // Perintah agar kotakan kartu secara keseluruhan juga bisa di-klik
+
         view.setOnClickListener {
             val intent = Intent(context, DetailBukuActivity::class.java)
             context.startActivity(intent)

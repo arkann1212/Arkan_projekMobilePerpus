@@ -32,3 +32,4 @@ class BerandaActivity : AppCompatActivity() {
             .commit()
     }
 }
+// TAMBAHIN MAPS
