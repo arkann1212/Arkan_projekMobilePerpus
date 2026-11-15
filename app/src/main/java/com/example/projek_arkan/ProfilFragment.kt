@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.projek_arkan.databinding.FragmentProfilBinding
-import com.example.projek_arkan.tutorial.TutorialActivity
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ProfilFragment : Fragment() {
     private var _binding: FragmentProfilBinding? = null
@@ -22,20 +22,35 @@ class ProfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 1. Inisialisasi adapter tab
+        val tabsAdapter = ProfilTabsAdapter(this)
+
+        // 2. Pasang adapter ke ViewPager2
+        binding.viewPagerProfil.adapter = tabsAdapter
+
+        // 3. Hubungkan TabLayout dengan ViewPager2
+        TabLayoutMediator(binding.tabLayoutProfil, binding.viewPagerProfil) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Riwayat Baca"
+                1 -> tab.text = "Tersimpan"
+            }
+        }.attach()
+
+        // 4. Logika Tombol Keluar (Logout)
         binding.btnKeluar.setOnClickListener {
-            // Hapus sesi login
+            // Hapus status login di memori HP agar Splash Screen tahu kita sudah keluar
             val sharedPref = requireActivity().getSharedPreferences("DigiPerpusPrefs", Context.MODE_PRIVATE)
-            sharedPref.edit().clear().apply()
+            with(sharedPref.edit()) {
+                putBoolean("is_login", false) // Set kembali menjadi false
+                apply()
+            }
 
-            // Kembali ke halaman Login
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
-            requireActivity().finish()
-        }
+            // Pindah ke LoginActivity dan bersihkan tumpukan halaman
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-        // Memberikan aksi klik pada tombol tutorial
-        binding.btnLihatTutorial.setOnClickListener {
-            val intent = Intent(requireContext(), TutorialActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
     }
 

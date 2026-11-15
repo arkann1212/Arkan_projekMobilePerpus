@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projek_arkan.databinding.ActivitySplashBinding
+import com.example.projek_arkan.tutorial.TutorialActivity
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
@@ -23,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
             if (isLogin) {
                 startActivity(Intent(this, BerandaActivity::class.java))
             } else {
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, TutorialActivity::class.java))
             }
             finish()
         }, 2000)
