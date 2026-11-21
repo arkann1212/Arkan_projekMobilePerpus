@@ -22,13 +22,13 @@ class ProfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Inisialisasi adapter tab
+
         val tabsAdapter = ProfilTabsAdapter(this)
 
-        // 2. Pasang adapter ke ViewPager2
+
         binding.viewPagerProfil.adapter = tabsAdapter
 
-        // 3. Hubungkan TabLayout dengan ViewPager2
+
         TabLayoutMediator(binding.tabLayoutProfil, binding.viewPagerProfil) { tab, position ->
             when (position) {
                 0 -> tab.text = "Riwayat Baca"
@@ -36,7 +36,7 @@ class ProfilFragment : Fragment() {
             }
         }.attach()
 
-        // 4. Logika Tombol Keluar (Logout)
+
         binding.btnKeluar.setOnClickListener {
             // Hapus status login di memori HP agar Splash Screen tahu kita sudah keluar
             val sharedPref = requireActivity().getSharedPreferences("DigiPerpusPrefs", Context.MODE_PRIVATE)

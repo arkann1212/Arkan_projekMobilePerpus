@@ -12,7 +12,22 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/cream"
         app:title="Detail Buku"
-        app:titleTextColor="@color/navy" />
+        app:titleTextColor="@color/navy">
+
+        <ImageView
+            android:id="@+id/btnUnduh"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="Unduh / Simpan Buku"
+            android:focusable="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_download"
+            app:tint="@color/navy" />
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,18 +41,32 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/CoverDetail"
                 android:layout_width="200dp"
                 android:layout_height="280dp"
+                android:layout_marginBottom="16dp"
                 android:background="@color/navy"
-                android:layout_marginBottom="16dp"/>
+                android:contentDescription="Cover Buku"
+                android:scaleType="centerCrop" />
 
             <TextView
+                android:id="@+id/JudulDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Book Of Proof"
                 android:textColor="@color/navy"
                 android:textSize="26sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/PenulisDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Nama Penulis"
+                android:textColor="@color/navy"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -48,12 +77,13 @@
                 android:textSize="15sp" />
 
             <Button
+                android:id="@+id/btnBacaBuku"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="@color/navy"
                 android:text="Baca Buku"
-                app:cornerRadius="12dp"/>
+                app:cornerRadius="12dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
